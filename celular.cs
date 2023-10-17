@@ -15,34 +15,20 @@ public class Celular
     }
 }
 
-public class Marca
+public abstract class Marca
 {
     public string Nome { get; set; }
 
-    public virtual void Ligar()
-    {
-        Console.WriteLine("Ligando o celular da marca " + Nome);
-    }
-
-    public virtual void Desligar()
-    {
-        Console.WriteLine("Desligando o celular da marca " + Nome);
-    }
+    public abstract void Ligar();
+    public abstract void Desligar();
 }
 
-public class Modelo
+public abstract class Modelo
 {
     public string Nome { get; set; }
 
-    public virtual void EnviarSMS()
-    {
-        Console.WriteLine("Enviando SMS a partir do modelo " + Nome);
-    }
-
-    public virtual void NavegarInternet()
-    {
-        Console.WriteLine("Navegando na Internet a partir do modelo " + Nome);
-    }
+    public abstract void EnviarSMS();
+    public abstract void NavegarInternet();
 }
 
 public class Samsung : Marca
@@ -101,12 +87,16 @@ public class Program
 {
     public static void Main(string[] args)
     {
-        Samsung samsungPhone = new Samsung();
+        Marca samsungPhone = new Samsung();
         samsungPhone.Ligar();
-        samsungPhone.EnviarSMS();
 
-        iPhone iphonePhone = new iPhone();
+        Marca iphonePhone = new iPhone();
         iphonePhone.Ligar();
-        iphonePhone.NavegarInternet();
+
+        Modelo galaxy = new GalaxyS21();
+        galaxy.EnviarSMS();
+
+        Modelo iphoneModel = new iPhone12();
+        iphoneModel.NavegarInternet();
     }
 }
