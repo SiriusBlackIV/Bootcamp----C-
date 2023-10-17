@@ -1,48 +1,60 @@
-// Classe base para representar um celular genérico
+using System;
+
 public class Celular
 {
     public string NumeroTelefone { get; set; }
 
     public void FazerChamada(string numero)
     {
-        // Implementação para fazer uma chamada
+        Console.WriteLine($"Chamando {numero}...");
     }
 
     public void EnviarMensagem(string numero, string mensagem)
     {
-        // Implementação para enviar mensagem
+        Console.WriteLine($"Enviando mensagem para {numero}: {mensagem}");
     }
 }
 
-// Classe base para representar uma marca de celular
-public abstract class Marca
+public class Marca
 {
     public string Nome { get; set; }
 
-    public abstract void Ligar();
-    public abstract void Desligar();
+    public virtual void Ligar()
+    {
+        Console.WriteLine("Ligando o celular da marca " + Nome);
+    }
+
+    public virtual void Desligar()
+    {
+        Console.WriteLine("Desligando o celular da marca " + Nome);
+    }
 }
 
-// Classe base para representar um modelo de celular
-public abstract class Modelo
+public class Modelo
 {
     public string Nome { get; set; }
 
-    public abstract void EnviarSMS();
-    public abstract void NavegarInternet();
+    public virtual void EnviarSMS()
+    {
+        Console.WriteLine("Enviando SMS a partir do modelo " + Nome);
+    }
+
+    public virtual void NavegarInternet()
+    {
+        Console.WriteLine("Navegando na Internet a partir do modelo " + Nome);
+    }
 }
 
-// Exemplo de classes concretas que herdam de Marca e Modelo
 public class Samsung : Marca
 {
     public override void Ligar()
     {
-        // Implementação específica para ligar um celular Samsung
+        Console.WriteLine("Ligando o celular Samsung");
     }
 
     public override void Desligar()
     {
-        // Implementação específica para desligar um celular Samsung
+        Console.WriteLine("Desligando o celular Samsung");
     }
 }
 
@@ -50,12 +62,12 @@ public class iPhone : Marca
 {
     public override void Ligar()
     {
-        // Implementação específica para ligar um iPhone
+        Console.WriteLine("Ligando o iPhone");
     }
 
     public override void Desligar()
     {
-        // Implementação específica para desligar um iPhone
+        Console.WriteLine("Desligando o iPhone");
     }
 }
 
@@ -63,12 +75,12 @@ public class GalaxyS21 : Modelo
 {
     public override void EnviarSMS()
     {
-        // Implementação específica para enviar SMS em um Galaxy S21
+        Console.WriteLine("Enviando SMS a partir do Galaxy S21");
     }
 
     public override void NavegarInternet()
     {
-        // Implementação específica para navegar na Internet em um Galaxy S21
+        Console.WriteLine("Navegando na Internet a partir do Galaxy S21");
     }
 }
 
@@ -76,11 +88,25 @@ public class iPhone12 : Modelo
 {
     public override void EnviarSMS()
     {
-        // Implementação específica para enviar SMS em um iPhone 12
+        Console.WriteLine("Enviando SMS a partir do iPhone 12");
     }
 
     public override void NavegarInternet()
     {
-        // Implementação específica para navegar na Internet em um iPhone 12
+        Console.WriteLine("Navegando na Internet a partir do iPhone 12");
+    }
+}
+
+public class Program
+{
+    public static void Main(string[] args)
+    {
+        Samsung samsungPhone = new Samsung();
+        samsungPhone.Ligar();
+        samsungPhone.EnviarSMS();
+
+        iPhone iphonePhone = new iPhone();
+        iphonePhone.Ligar();
+        iphonePhone.NavegarInternet();
     }
 }
